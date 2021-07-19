@@ -7,5 +7,6 @@ def register(request):
 	form = UserCreationForm()
 	context = {
 		'form':form,
+		'title': 'Sign Up'
 	}
 	return render(request, 'account/register.html', context)
