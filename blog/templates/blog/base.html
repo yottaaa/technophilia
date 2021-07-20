@@ -45,7 +45,7 @@
           <ul class="navbar-nav mb-2 mb-lg-0">
             {% if user.is_authenticated %}
             <li class="nav-item">
-              <a class="nav-link" href="#">
+              <a class="nav-link" href="{% url 'profile' %}">
                 <img src="https://picsum.photos/100/100" 
         style="width: 24px;height: 24px;border-radius: 50%;">
                 {{ user.username }}
