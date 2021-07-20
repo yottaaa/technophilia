@@ -31,13 +31,13 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'account',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'account.apps.AccountConfig',
     'blog.apps.BlogConfig',
     'django_quill',
     'crispy_forms',
@@ -133,3 +133,6 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 # Redirect to home page when the user is logged in
 LOGIN_REDIRECT_URL = 'blog-home'
+
+# For login required
+LOGIN_URL = 'login'
