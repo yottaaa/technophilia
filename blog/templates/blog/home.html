@@ -1,0 +1,41 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+<section class="row">
+	<section class="col-lg-8 col-sm-12">
+		{% if posts %}
+		{% for post in posts %}
+		<article class="card mb-3">
+			<div class="card-body d-flex align-items-center text-truncate">
+				<img src="{{ post.author.profile.pic.url }}" 
+				style="width: 32px;height: 32px;border-radius: 50%;">
+				<span class="fw-bold text-truncate" style="margin-left: 1rem;">{{ post.author }}</span>
+			</div>
+			<img src="{{ post.banner.url }}" class="card-img-top" alt="..."
+			style="height: 350px;">
+			<div class="card-body">
+				<h5 class="card-title text-truncate fs-3">{{ post.title }}</h5>
+				<small class="fst-italic fw-light text-truncate text-muted">by {{ post.author }} on {{ post.date_posted|date:"F d, Y" }}</small>
+				<p class="card-text fw-light text-truncate">{{ post.caption }}</p>
+			</div>
+		</article>
+		{% endfor %}
+		{% else %}
+		<div class="alert alert-info" role="alert">
+		  No Blog Posted.
+		</div>
+		{% endif %}
+	</section>
+	<section class="col-lg-4 col-sm-12">
+		<aside class="card">
+		  <div class="card-header">
+		    Featured
+		  </div>
+		  <ul class="list-group list-group-flush">
+		    <li class="list-group-item">An item</li>
+		    <li class="list-group-item">A second item</li>
+		    <li class="list-group-item">A third item</li>
+		  </ul>
+		</aside>
+	</section>
+</section>
+{% endblock%}
