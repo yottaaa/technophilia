@@ -6,6 +6,7 @@ from django.utils import timezone
 # Create your models here.
 class Post(models.Model):
 	title = models.CharField(max_length=200)
+	banner = models.ImageField(default='banner_pics/default_banner.jpg', upload_to='banner_pics')
 	caption = models.TextField(null=True,blank=True)
 	content = QuillField()
 	author = models.ForeignKey(User, on_delete=models.CASCADE)
