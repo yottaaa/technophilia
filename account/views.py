@@ -14,8 +14,6 @@ def register(request):
 		# if form is valid redirect to home url with success message
 		if form.is_valid():
 			new_user = form.save()
-			profile = Profile(user=new_user)
-			profile.save()
 			login(request, new_user)
 			username = form.cleaned_data.get('username')
 			messages.success(request, "Welcome {}".format(username))
