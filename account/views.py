@@ -4,7 +4,7 @@ from django.contrib import messages
 from .forms import UserRegistrationForm
 from django.contrib.auth.decorators import login_required
 from blog.models import Post
-from account.models import Profile
+from django.contrib.auth.models import User
 
 # Create your views here.
 
@@ -29,6 +29,15 @@ def register(request):
 	return render(request, 'account/register.html', context)
 
 def profile(request):
+	context = {}
+	current_logged_user = request.user
 	if request.GET:
-		post = Post.objects.filter(author.user.pk==request.GET['uid'])
-	return render(request, 'account/profile.html')
+		getuser = User.objects.get(pk=request.GET['uid'])
+		posts = Post.objects.filter(author=getuser)
+		context['title'] = "{}'s profile".format(getuser.username)
+		context['posts'] = posts
+		context['getuser'] = getuser
+		context['post_count'] = posts.count()
+		context['isEditable'] = (current_logged_user == getuser)
+
+	return render(request, 'account/profile.html', context)
