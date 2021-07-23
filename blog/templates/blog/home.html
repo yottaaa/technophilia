@@ -8,7 +8,7 @@
 			<div class="card-body d-flex align-items-center text-truncate">
 				<img src="{{ post.author.profile.pic.url }}" 
 				style="width: 32px;height: 32px;border-radius: 50%;">
-				<span class="fw-bold text-truncate" style="margin-left: 1rem;">{{ post.author }}</span>
+				<a href="{% url 'profile' %}?uid={{ post.author.id }}" class="text-decoration-none fw-bold text-truncate" style="margin-left: 1rem;">{{ post.author }}</a>
 			</div>
 			<img src="{{ post.banner.url }}" class="card-img-top" alt="..."
 			style="height: 350px;">
