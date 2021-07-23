@@ -10,7 +10,9 @@
 	    	<div class="d-flex flex-column align-items-sm-center">
 	    		<h2 class="">{{ getuser.username }}</h2>
 		    	<small class="text-muted">{{ getuser.email }}</small>
-		    	<small class="">blogs: {{ post_count }}</small>
+		    	<small class="">
+		    	{{ post_count }} {% if post_count == 1 or post_count == 0 %}blog{% else %}blogs{% endif %}
+		    	</small>
 	    	</div>
 		  </div>
 		</div>
