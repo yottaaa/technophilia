@@ -13,6 +13,9 @@
 		    	<small class="">
 		    	{{ post_count }} {% if post_count == 1 or post_count == 0 %}blog{% else %}blogs{% endif %}
 		    	</small>
+		    	{% if isEditable %}
+		    	<a href="{% url 'update-profile' %}" class="btn btn-outline-success my-3">Edit</a>
+		    	{% endif %}
 	    	</div>
 		  </div>
 		</div>
