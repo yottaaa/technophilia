@@ -16,6 +16,7 @@
 				<h5 class="card-title text-truncate fs-3">{{ post.title }}</h5>
 				<small class="fst-italic fw-light text-truncate text-muted">by {{ post.author }} on {{ post.date_posted|date:"F d, Y" }}</small>
 				<p class="card-text fw-light text-truncate">{{ post.caption }}</p>
+				<a href="{% url 'blog-detail' post.id %}" class="text-decoration-none">See more...</a>
 			</div>
 		</article>
 		{% endfor %}
@@ -26,16 +27,7 @@
 		{% endif %}
 	</section>
 	<section class="col-lg-4 col-sm-12">
-		<aside class="card">
-		  <div class="card-header">
-		    Featured
-		  </div>
-		  <ul class="list-group list-group-flush">
-		    <li class="list-group-item">An item</li>
-		    <li class="list-group-item">A second item</li>
-		    <li class="list-group-item">A third item</li>
-		  </ul>
-		</aside>
+		{% include 'blog/sidebar.html' %}
 	</section>
 </section>
 {% endblock%}
