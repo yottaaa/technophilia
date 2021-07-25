@@ -1,0 +1,24 @@
+{% extends 'blog/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<section>
+	<div class="card p-4 mx-auto" style="width: 75%;">
+		<form method="POST">
+			{% csrf_token %}
+			<fieldset class="form-group">
+				<legend class="border-bottom mb-4">
+					Update {{ user.username }}'s profile
+				</legend>
+				{{ user_form|crispy }}
+				{{ profile_form|crispy }}
+			</fieldset>
+			<div class="form-group">
+				<button class="btn btn-outline-success my-3" 
+				type="submit">
+					Save
+				</button>
+			</div>			
+		</form>
+	</div>
+</section>
+{% endblock content %}
