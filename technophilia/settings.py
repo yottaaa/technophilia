@@ -141,3 +141,25 @@ LOGIN_REDIRECT_URL = 'blog-home'
 
 # For login required
 LOGIN_URL = 'login'
+
+# Quill JS
+QUILL_CONFIGS = {
+    'default':{
+        'theme': 'bubble',
+        'modules': {
+            'syntax': True,
+            'toolbar': [
+                [
+                    {'font': []},
+                    {'header': []},
+                    {'align': []},
+                    'bold', 'italic', 'underline', 'strike', 'blockquote',
+                    {'color': []},
+                    {'background': []},
+                ],
+                ['code-block', 'link', 'image'],
+                ['clean'],
+            ]
+        }
+    }
+}
