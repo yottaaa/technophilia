@@ -39,9 +39,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'blog.apps.BlogConfig',
-    'django_quill',
+    'ckeditor',
+    'ckeditor_uploader',
     'crispy_forms',
 ]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -121,6 +123,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 
 # Media uploads
@@ -142,24 +145,24 @@ LOGIN_REDIRECT_URL = 'blog-home'
 # For login required
 LOGIN_URL = 'login'
 
-# Quill JS
-QUILL_CONFIGS = {
-    'default':{
-        'theme': 'bubble',
-        'modules': {
-            'syntax': True,
-            'toolbar': [
-                [
-                    {'font': []},
-                    {'header': []},
-                    {'align': []},
-                    'bold', 'italic', 'underline', 'strike', 'blockquote',
-                    {'color': []},
-                    {'background': []},
-                ],
-                ['code-block', 'link', 'image'],
-                ['clean'],
-            ]
-        }
-    }
+# CKEDITOR
+
+CKEDITOR_UPLOAD_PATH = "blog_upload/"
+
+CKEDITOR_CONFIGS = {
+    'default': {
+        'width': 'auto',
+        'toolbar': [
+            ['Styles', 'Format', 'Font', 'FontSize'],
+            ["Format", "Bold", "Italic", "Underline", "Strike", "SpellChecker"],
+            ['NumberedList', 'BulletedList', "Indent", "Outdent", 'JustifyLeft', 'JustifyCenter','JustifyRight', 'JustifyBlock'],
+            ["Image", "Table", "Link", "Unlink", "Anchor", "SectionLink", "Subscript", "Superscript"], 
+            ['Undo', 'Redo'],
+            ['Blockquote','CodeSnippet'],
+            ["Source"],
+            ["Maximize"]
+        ],
+        'extraPlugins': 'codesnippet',
+        'codeSnippet_theme': 'monokai_sublime',
+    },
 }
