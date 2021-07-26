@@ -1,7 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
+
 from .models import Post
-from .forms import ContentFieldForm
+from .forms import BlogForm
 
 # Create your views here.
 
@@ -14,12 +17,28 @@ def home(request):
 def blogDetail(request, pk):
 	context = {}
 	post = Post.objects.get(pk=pk)
-	content = ContentFieldForm(instance=post)
 	context['post'] = post
-	context['content'] = content
 	context['title'] = '{}'.format(post.title) 
 	context['isEditable'] = (post.author == request.user)
 	return render(request, "blog/detail.html", context)
+
+@login_required
+def blogCreate(request):
+	context = {}
+
+	if request.method == 'POST':
+		blog_form = BlogForm(request.POST)
+		if blog_form.is_valid():
+			blog_form.instance.author = request.user
+			blog_form.save()
+			messages.success(request, "Create new blog successfully.")
+			return redirect('blog-home')
+	else:
+		blog_form = BlogForm()
+		context['blog_form'] = blog_form
+
+	context['title'] = "Add new blog"
+	return render(request, "blog/create.html", context)
 
 def about(request):
 	context = {}
