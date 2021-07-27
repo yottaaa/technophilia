@@ -1,0 +1,15 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+<section>
+	<div class="card p-4 mx-auto">
+		<h1>Are you sure you want to delete "{{ blog.title }}" blog?</h1>
+		<div class="d-flex flex-row">
+			<form method="POST">
+				{% csrf_token %}
+				<input type="hidden" name="blog_id" value="{{ blog.id }}">
+				<button type="submit" class="btn btn-sm btn-outline-danger">Delete</button>
+			</form>
+		</div>
+	</div>
+</section>
+{% endblock content %}

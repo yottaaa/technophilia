@@ -16,7 +16,10 @@
 		    {{ post.content|safe }}
 		</form>
 		{% if isEditable %}
-    	<a href="{% url 'blog-edit' post.id %}" class="btn btn-sm btn-outline-success my-3">Edit</a>
+		<div class="d-flex flex-row">
+			<a href="{% url 'blog-edit' post.id %}" class="btn btn-sm btn-outline-success my-3">Edit</a>
+    		<a href="{% url 'blog-delete' post.id %}" class="btn btn-sm btn-outline-danger my-3 mx-3">Delete</a>
+		</div>
     	{% endif %}
 	</div>
 </article>

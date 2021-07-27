@@ -58,6 +58,23 @@ def blogEdit(request, pk):
 	context['title'] = "Add new blog"
 	return render(request, "blog/create.html", context)
 
+@login_required
+def blogDelete(request, pk):
+	context = {}
+	blog = Post.objects.get(pk=pk,author=request.user)
+
+	if request.method == 'POST':
+		if request.POST['blog_id'] == str(blog.id):
+			print("Its time to delete")
+			blog.delete()
+			messages.success(request, "Delete blog successfully.")
+			return redirect('blog-home')
+	else:
+		context['blog'] = blog
+
+	context['title'] = "Delete \"{}\" ".format(blog.title)
+	return render(request, "blog/delete.html", context)
+
 def about(request):
 	context = {}
 	context['title'] = "About"
