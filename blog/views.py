@@ -40,6 +40,24 @@ def blogCreate(request):
 	context['title'] = "Add new blog"
 	return render(request, "blog/create.html", context)
 
+@login_required
+def blogEdit(request, pk):
+	context = {}
+	blog = Post.objects.get(pk=pk,author=request.user)
+	if request.method == 'POST':
+		blog_form = BlogForm(request.POST)
+		if blog_form.is_valid():
+			blog_form.instance.author = request.user
+			blog_form.save()
+			messages.success(request, "Update blog successfully.")
+			return redirect('blog-home')
+	else:
+		blog_form = BlogForm(instance=blog)
+		context['blog_form'] = blog_form
+
+	context['title'] = "Add new blog"
+	return render(request, "blog/create.html", context)
+
 def about(request):
 	context = {}
 	context['title'] = "About"
