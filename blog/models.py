@@ -17,3 +17,9 @@ class Post(models.Model):
 	def __str__(self):
 		return self.title
 
+class BlogView(models.Model):
+	blog = models.ForeignKey(Post, on_delete=models.CASCADE)
+	viewer = models.ForeignKey(User, on_delete=models.CASCADE)
+
+	def __str__(self):
+		return "{} view on blog \"{}\"".format(self.viewer,self.blog)
