@@ -1,10 +1,26 @@
 <aside class="card">
   <div class="card-header">
-    Featured
+    Recommended
   </div>
   <ul class="list-group list-group-flush">
-    <li class="list-group-item">An item</li>
-    <li class="list-group-item">A second item</li>
-    <li class="list-group-item">A third item</li>
+    {% if recommended_posts %}
+    {% for post in recommended_posts %}
+    <li class="list-group-item text-truncate">
+      <a href="{% url 'blog-detail' post.blog.id %}" class="text-decoration-none">
+        <h5 class="fw-bold">{{ post.blog.title }}</h5>
+      </a>
+      <small class="text-muted">
+        <i class="fas fa-eye"></i> {{ post.views }}
+        {% if post.views <= 1 %}
+          view
+        {% else %}
+          views
+        {% endif %}
+      </small>
+    </li>
+    {% endfor %}
+    {% else %}
+    <li class="list-group-item">No recommendation</li>
+    {% endif %}
   </ul>
 </aside>
