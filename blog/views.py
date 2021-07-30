@@ -11,12 +11,20 @@ from django.core.paginator import Paginator
 
 def home(request):
 	context = {}
+
+	search_key = ""
 	posts = Post.objects.all().order_by('-date_posted')
+	if request.method == 'GET':
+		if request.GET.get('search'):
+			posts = posts.filter(title__icontains=request.GET.get('search'))
+			search_key = request.GET.get('search')
+	
 	paginator = Paginator(posts, 5)
 	page_number = request.GET.get('page')
 	page_obj = paginator.get_page(page_number)
 
 	context['posts'] = page_obj
+	context['search_key'] = search_key if search_key != "" else None
 	context['title'] = "Home"
 	return render(request, "blog/home.html", context)
 
