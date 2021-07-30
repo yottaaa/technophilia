@@ -17,7 +17,5 @@ def recommendationContext(request):
 	
 	posts = sorted(posts, key=lambda e: e['views'], reverse=True)
 
-	print(posts)
-
 	context['recommended_posts'] = posts
 	return context
