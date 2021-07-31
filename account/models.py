@@ -6,7 +6,7 @@ from django_resized import ResizedImageField
 
 class Profile(models.Model):
 	user = models.OneToOneField(User, on_delete=models.CASCADE)
-	pic = ResizedImageField(size=[300, 300], quality=75, upload_to='profile_pics', default='profile_pics/default_avatar.jpg', force_format='JPEG')
+	pic = ResizedImageField(size=[300, 300], quality=75, upload_to='profile_pics', default='profile_pics/default_avatar_qrrunz.jpg', force_format='JPEG')
 
 	def __str__(self):
 		return "{} profile".format(self.user.username)
