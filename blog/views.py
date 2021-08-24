@@ -33,8 +33,10 @@ def blogDetail(request, pk):
 	post = Post.objects.get(pk=pk)
 	blog_views = BlogView.objects.all()
 
-	if not blog_views.filter(blog=post,viewer=request.user).exists():
-		BlogView.objects.create(blog=post,viewer=request.user)
+	# for counting views
+	if request.user.is_authenticated:
+		if not blog_views.filter(blog=post,viewer=request.user).exists():
+			BlogView.objects.create(blog=post,viewer=request.user)
 
 	context['post'] = post
 	context['title'] = '{}'.format(post.title) 
