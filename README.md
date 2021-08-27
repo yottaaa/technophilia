@@ -1,12 +1,13 @@
 # technophilia
 <https://technophilia-blog.herokuapp.com/>
 
-A web blog about technology and lots of tutorials
+Web blog application for tech people.
 
 ![screenshot](technophilia.PNG)
 
 ### Features
 - Add user
+- View post without authorization
 - Create post using wysiwyg editor (CKEditor)
 - Post view count
 - Create, Retrieve, Update, and Delete post
