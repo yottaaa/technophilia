@@ -13,4 +13,5 @@ Web blog application for tech people.
 - Create, Retrieve, Update, and Delete post
 - Send email when resetting password
 - Search posts
+- Implement cloud storage for image upload using Cloudinary
 
